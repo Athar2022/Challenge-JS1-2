@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="app-header">
+        <h1>Employee Management Dashboard</h1>
+    </header>
+
+    <main class="app-container">
+        <section class="employee-form-section card">
+            <h2>Add New Employee</h2>
+            <form id="employeeForm">
+                <div class="form-group">
+                    <label for="employeeName">Employee Name:</label>
+                    <input type="text" id="employeeName" name="employeeName" placeholder="Enter full name" required>
+                    <div class="error-message" id="nameError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="employeeRole">Role:</label>
+                    <input type="text" id="employeeRole" name="employeeRole" placeholder="e.g., Software Engineer" required>
+                    <div class="error-message" id="roleError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="employeeStatus">Status:</label>
+                    <select id="employeeStatus" name="employeeStatus" required>
+                        <option value="">-- Select Status --</option>
+                        <option value="Active">Active</option>
+                        <option value="On Leave">On Leave</option>
+                        <option value="Terminated">Terminated</option>
+                    </select>
+                    <div class="error-message" id="statusError"></div>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Employee</button>
+            </form>
+        </section>
+
+        <section class="employee-list-section card">
+            <div class="section-header">
+                <h2>Current Employees (<span id="activeEmployeeCount">0</span>)</h2>
+                <button id="toggleTrashBtn" class="btn btn-secondary">Show Trash (<span id="trashCount">0</span>)</button>
+            </div>
+            
+            <div class="table-responsive">
+                <table id="employeeTable">
+                    <thead>
+                        <tr>
+                            <th>Employee Name</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        </tbody>
+                </table>
+                <p id="noEmployeesMessage" class="empty-message">No active employees yet. Add one!</p>
+            </div>
+        </section>
+
+        <section id="trashBinSection" class="trash-bin-section card hidden">
+            <h2>Trash Bin (<span id="trashBinCountDisplay">0</span>)</h2>
+            <div class="table-responsive">
+                <table id="trashTable">
+                    <thead>
+                        <tr>
+                            <th>Employee Name</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        </tbody>
+                </table>
+                <p id="noTrashMessage" class="empty-message">Trash is empty!</p>
+            </div>
+            <button id="emptyTrashBtn" class="btn btn-danger">Empty Trash</button>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2025 Employee Management App. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
