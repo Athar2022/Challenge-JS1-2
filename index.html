@@ -1,16 +1,42 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee Management Dashboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="container">
         <div class="header">
             <h1>Employee Management Dashboard</h1>
             <button class="trash-btn" id="toggleTrashBtn">Show Trash</button>
+        </div>
+
+        <div class="search-filter-container">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search by name...">
+                <button id="searchBtn">Search</button>
+            </div>
+            <div class="filter-box">
+                <select id="roleFilter">
+                    <option value="">All Roles</option>
+                </select>
+                <select id="statusFilter">
+                    <option value="">All Statuses</option>
+                    <option value="Active">Active</option>
+                    <option value="On Leave">On Leave</option>
+                    <option value="Terminated">Terminated</option>
+                </select>
+                <input type="number" id="minSalary" placeholder="Min Salary">
+                <input type="number" id="maxSalary" placeholder="Max Salary">
+                <input type="number" id="minBonus" placeholder="Min Bonus">
+                <input type="number" id="maxBonus" placeholder="Max Bonus">
+                <button id="applyFilters">Apply Filters</button>
+                <button id="resetFilters">Reset</button>
+            </div>
         </div>
 
         <div class="form-container">
@@ -26,6 +52,11 @@
                     <span class="error" id="roleError">Role is required</span>
                 </div>
                 <div class="form-group">
+                    <label for="salary">Salary</label>
+                    <input type="number" id="salary" required>
+                    <span class="error" id="salaryError">Salary is required and must be a positive number</span>
+                </div>
+                <div class="form-group">
                     <label for="status">Status</label>
                     <select id="status" required>
                         <option value="Active">Active</option>
@@ -38,13 +69,22 @@
             </form>
         </div>
 
-        <div class="counter" id="counter">Employees: 0 | Trash: 0</div>
+        <div class="stats-container">
+            <div class="counter" id="counter">Employees: 0 | Trash: 0</div>
+            <div class="payroll-summary">Total Payroll: <span id="totalPayroll">0</span> R</div>
+            <div class="delete-low-salary">
+                <input type="number" id="salaryThreshold" placeholder="Enter salary threshold">
+                <button id="deleteLowSalaryBtn">Delete Employees ≤ Threshold</button>
+            </div>
+        </div>
 
         <table id="employeeTable">
             <thead>
                 <tr>
                     <th>Name</th>
                     <th>Role</th>
+                    <th>Salary</th>
+                    <th>Bonus</th>
                     <th>Status</th>
                     <th>Actions</th>
                 </tr>
@@ -59,6 +99,8 @@
                     <tr>
                         <th>Name</th>
                         <th>Role</th>
+                        <th>Salary</th>
+                        <th>Bonus</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -66,9 +108,23 @@
                 <tbody id="trashTableBody"></tbody>
             </table>
         </div>
-    </div>
 
+        <!-- Bonus Modal -->
+        <div id="bonusModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Add Bonus</h2>
+                <div class="form-group">
+                    <label for="bonusPercentage">Bonus Percentage:</label>
+                    <input type="number" id="bonusPercentage" min="0" max="100" placeholder="Enter percentage">
+                    <span class="error" id="bonusError"></span>
+                </div>
+                <button id="applyBonusBtn">Apply Bonus</button>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
+
 </html>

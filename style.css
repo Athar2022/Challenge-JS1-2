@@ -26,6 +26,62 @@ h1 {
   color: #333;
 }
 
+.search-filter-container {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.search-box,
+.filter-box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.search-box input,
+.filter-box input,
+.filter-box select {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  flex: 1;
+  min-width: 150px;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.payroll-summary {
+  background: #2196f3;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.delete-low-salary {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.delete-low-salary input {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 150px;
+}
+
 .form-container {
   background: white;
   padding: 20px;
@@ -60,6 +116,7 @@ button {
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
+  transition: background-color 0.3s;
 }
 
 .add-btn {
@@ -120,9 +177,28 @@ th {
   background-color: #f44336;
 }
 
+.high-salary-badge {
+  background-color: #4caf50;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  color: white;
+  margin-left: 5px;
+}
+
+.has-bonus-badge {
+  background-color: #e91e63;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  color: white;
+  margin-left: 5px;
+}
+
 .action-btn {
   padding: 6px 12px;
   margin: 0 4px;
+  transition: background-color 0.3s;
 }
 
 .edit-btn {
@@ -141,6 +217,11 @@ th {
   color: white;
 }
 
+.bonus-btn {
+  background-color: #ff9800;
+  color: white;
+}
+
 .error {
   color: #f44336;
   font-size: 12px;
@@ -154,13 +235,48 @@ th {
 }
 
 .counter {
-  margin: 20px 0;
   font-size: 14px;
   color: #555;
 }
 
-@media (max-width: 768) {
-  .form-container {
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 400px;
+  border-radius: 8px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: black;
+}
+
+@media (max-width: 768px) {
+  .form-container,
+  .search-filter-container {
     padding: 15px;
   }
 
@@ -171,5 +287,21 @@ th {
   .action-btn {
     padding: 4px 8px;
     font-size: 12px;
+  }
+
+  .stats-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search-box,
+  .filter-box {
+    flex-direction: column;
+  }
+
+  .search-box input,
+  .filter-box input,
+  .filter-box select {
+    width: 100%;
   }
 }
